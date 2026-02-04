@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DearDiary - Your Safe Space</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Raleway:wght@300;400;500;600&family=Dancing+Script:wght@400;700&family=Caveat:wght@400;700&family=Indie+Flower&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a class="logo" href="index.html">
+            <img src="assets/images/logo.png" alt="Dear Diary">
+        </a>
+        <nav>
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false">☰</button>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="diary.html">Let it Out</a></li>
+                <li><a href="calm.html">Find Calm</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="navAuthContainer"></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- FIND CALM PAGE -->
+    <div id="calmPage" class="page">
+        <div class="calm-container">
+            <div class="calm-header">
+                <h1>Find Your Calm</h1>
+                <p>Take a moment to breathe, reflect, and restore your peace.</p>
+                <div class="breathing-circle"><span id="breatheText">Breathe</span></div>
+            </div>
+
+            <div class="calm-content">
+                <!-- Meditation Timer -->
+                <div class="calm-section">
+                    <h2>Meditation Timer</h2>
+                    <p style="text-align: center; margin-bottom: 2rem; color: var(--text-dark); opacity: 0.8;">Set your timer and find your inner peace</p>
+                    
+                    <div class="meditation-timer">
+                        <div class="timer-display" id="timerDisplay" style="color: var(--brown);">05:00</div>
+                        
+                        <div class="timer-controls" style="margin-bottom: 1.5rem;">
+                            <button class="btn-secondary btn" onclick="setTimer(3)" style="min-width: 90px;">3 min</button>
+                            <button class="btn-secondary btn" onclick="setTimer(5)" style="min-width: 90px;">5 min</button>
+                            <button class="btn-secondary btn" onclick="setTimer(10)" style="min-width: 90px;">10 min</button>
+                            <button class="btn-secondary btn" onclick="setTimer(15)" style="min-width: 90px;">15 min</button>
+                        </div>
+                        
+                        <div class="custom-timer-input" style="margin-bottom: 2rem;">
+                            <span style="color: var(--text-dark); font-weight: 500;">Custom:</span>
+                            <input type="number" id="customMinutes" min="1" max="60" placeholder="Minutes" style="width: 100px; padding: 0.6rem; border: 2px solid var(--mauve); border-radius: 15px; text-align: center;">
+                            <button class="btn-secondary btn" onclick="setCustomTimer()">Set</button>
+                        </div>
+                        
+                        <div style="display: flex; gap: 1rem; justify-content: center;">
+                            <button class="btn" onclick="startMeditation()" id="timerBtn" style="min-width: 180px; font-size: 1.1rem;">Start Meditation</button>
+                            <button class="btn-secondary btn" onclick="resetTimer()" style="min-width: 100px;">Reset</button>
+                        </div>
+                    </div>
+                </div>
+
+                
+
+                <!-- Daily Affirmation -->
+                <div class="calm-section">
+                    <h2>Daily Affirmation</h2>
+                    <p style="text-align: center; color: var(--text-dark); opacity: 0.8; margin-bottom: 2rem;">Words to uplift and inspire you</p>
+                    
+                    <div class="quote-display">
+                        <p class="quote-text" id="calmQuote"></p>
+                    </div>
+                    
+                    <div style="text-align: center; margin-top: 1.5rem;">
+                        <button class="btn" onclick="getNewQuote()">New Quote</button>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; padding-top: 2rem; border-top: 2px solid var(--mauve);">
+                        <p style="text-align: center; color: var(--text-dark); font-size: 0.95rem; opacity: 0.7;">
+                            <em>Tap "New Quote" to discover a new affirmation. Share positivity with yourself daily.</em>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Gratitude -->
+                <div class="calm-section">
+                    <h2>Gratitude Journal</h2>
+                    <p style="text-align: center; color: var(--text-dark); opacity: 0.8; margin-bottom: 2rem;">Reflect on the good things in your life</p>
+                    
+                    <div style="background: white; padding: 2rem; border-radius: 25px; border: 3px solid var(--mauve); box-shadow: 0 8px 20px rgba(92, 61, 61, 0.1);">
+                        <div style="text-align: center; margin-bottom: 1.5rem;">
+                            <p style="font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--brown); font-style: italic;">What are you grateful for today?</p>
+                        </div>
+                        
+                        <input type="text" class="gratitude-input" id="gratitudeInput" placeholder="I'm grateful for...">
+                        <button class="btn" onclick="addGratitude()" style="width: 100%; margin-top: 1rem;">Add Gratitude</button>
+                        
+                        <div class="gratitude-list" id="gratitudeList" style="margin-top: 2rem;"></div>
+                    </div>
+                    
+                    <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(252, 249, 232, 0.8); border-radius: 20px; border: 2px solid var(--mauve); text-align: center;">
+                        <p style="color: var(--text-dark); font-size: 0.95rem; line-height: 1.6;">
+                            <strong style="color: var(--brown);">Why Gratitude?</strong><br>
+                            <em>Practicing gratitude daily has been shown to improve mood, reduce stress, and enhance overall well-being. Take a moment each day to appreciate the little things.</em>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Music -->
+                <div class="calm-section">
+                    <h2>Relaxing Sounds</h2>
+                    <div class="music-player">
+                        <div class="music-list" id="musicList"></div>
+                    </div>
+                    <audio id="audioPlayer"></audio>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js" defer></script>
+    <script src="js/common.js" defer></script>
+</body>
+</html>

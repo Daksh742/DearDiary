@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DearDiary - Your Safe Space</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Raleway:wght@300;400;500;600&family=Dancing+Script:wght@400;700&family=Caveat:wght@400;700&family=Indie+Flower&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a class="logo" href="index.html">
+            <img src="assets/images/logo.png" alt="Dear Diary">
+        </a>
+        <nav>
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false">☰</button>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="diary.html">Let it Out</a></li>
+                <li><a href="calm.html">Find Calm</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="navAuthContainer"></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- PROFILE PAGE -->
+    <div id="profilePage" class="page">
+        <div class="profile-container">
+            <div class="profile-content">
+                <div class="profile-header">
+                    <div class="profile-pic-container">
+                        <div class="profile-pic" id="profilePicDisplay"></div>
+                        <div class="profile-pic-upload" onclick="document.getElementById('profilePicInput').click()">📷</div>
+                        <input type="file" id="profilePicInput" accept="image/*" style="display: none;">
+                    </div>
+                    <h1 class="profile-greeting" id="profileGreeting">Hello!</h1>
+                </div>
+                
+                <form id="profileForm">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="profileName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="profileEmail" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Favorite Quote</label>
+                        <textarea id="profileQuote" placeholder="What quote inspires you?"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Preferred Writing Time</label>
+                        <select id="profileWritingTime">
+                            <option>Morning</option>
+                            <option>Afternoon</option>
+                            <option>Evening</option>
+                            <option>Night</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Journaling Goal</label>
+                        <select id="profileGoal">
+                            <option>Daily reflection</option>
+                            <option>Stress relief</option>
+                            <option>Personal growth</option>
+                            <option>Gratitude practice</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>New Password (leave blank to keep current)</label>
+                        <input type="password" id="profileNewPassword" minlength="6">
+                    </div>
+                    <div class="error-message" id="profileError"></div>
+                    <div style="display: flex; gap: 1rem; justify-content: center; margin-top: 2rem;">
+                        <button type="submit" class="btn">Update Profile</button>
+                        <button type="button" class="btn-secondary btn" onclick="logout()">Logout</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js" defer></script>
+    <script src="js/common.js" defer></script>
+</body>
+</html>

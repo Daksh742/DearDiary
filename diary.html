@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DearDiary - Your Safe Space</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Raleway:wght@300;400;500;600&family=Dancing+Script:wght@400;700&family=Caveat:wght@400;700&family=Indie+Flower&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a class="logo" href="index.html">
+            <img src="assets/images/logo.png" alt="Dear Diary">
+        </a>
+        <nav>
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false">☰</button>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="diary.html">Let it Out</a></li>
+                <li><a href="calm.html">Find Calm</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="navAuthContainer"></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- DIARY PAGE -->
+    <div id="diaryPage" class="page">
+        <div class="diary-container">
+            <div class="diary-header">
+                <h1>My Diary</h1>
+            </div>
+
+            <div class="diary-tabs">
+                <button class="tab-btn active" onclick="switchDiaryTab('write')">Write Entry</button>
+                <button class="tab-btn" onclick="switchDiaryTab('view')">View Entries</button>
+            </div>
+
+            <div class="diary-content">
+                <div id="writeTab" class="diary-journal">
+                    <div class="journal-header">
+                        <div class="journal-date" id="journalDate"></div>
+                        <div class="journal-greeting" id="journalGreeting"></div>
+                    </div>
+                    
+                    <div class="formatting-toolbar">
+                        <div class="toolbar-group">
+                            <span class="toolbar-label">Font:</span>
+                            <select class="font-select" id="fontSelect" onchange="changeFont()">
+                                <option value="dancing">Dancing Script</option>
+                                <option value="caveat">Caveat</option>
+                                <option value="indie">Indie Flower</option>
+                                <option value="shadows">Shadows Into Light</option>
+                            </select>
+                        </div>
+                        
+                        <div class="toolbar-group">
+                            <span class="toolbar-label">Size:</span>
+                            <input type="range" class="slider-input" id="sizeSlider" min="12" max="30" value="18" oninput="changeFontSize()">
+                            <span id="sizeDisplay">18px</span>
+                        </div>
+                        
+                                                
+                        <div class="toolbar-group">
+                            <span class="toolbar-label">Color:</span>
+                            <input type="color" class="color-input" id="colorInput" value="#4a2f2f" onchange="changeTextColor()">
+                        </div>
+                        
+                        <div class="toolbar-group">
+                            <button class="format-btn" id="boldBtn" onclick="toggleFormat('bold')"><strong>B</strong></button>
+                            <button class="format-btn" id="italicBtn" onclick="toggleFormat('italic')"><em>I</em></button>
+                            <button class="format-btn" id="underlineBtn" onclick="toggleFormat('underline')"><u>U</u></button>
+                            <button class="format-btn" id="highlightBtn" onclick="toggleHighlight()">H</button>
+                        </div>
+                    </div>
+
+                    <div class="media-tools">
+                        <button class="media-btn" onclick="document.getElementById('imageInput').click()">📷 Add Image</button>
+                        <div class="emoji-picker-container">
+                            <button class="media-btn" onclick="toggleEmojiPicker()">😊 Emojis</button>
+                            <div class="emoji-picker-panel" id="emojiPicker">
+                                <div class="emoji-categories">
+                                    <button class="emoji-category-btn" onclick="showEmojiCategory('smileys')">😊</button>
+                                    <button class="emoji-category-btn" onclick="showEmojiCategory('nature')">🌸</button>
+                                    <button class="emoji-category-btn" onclick="showEmojiCategory('objects')">⚡</button>
+                                    <button class="emoji-category-btn" onclick="showEmojiCategory('symbols')">❤️</button>
+                                </div>
+                                <div class="emoji-grid" id="emojiGrid"></div>
+                            </div>
+                        </div>
+                        <input type="file" id="imageInput" accept="image/*" multiple style="display: none">
+                    </div>
+
+                    <div class="journal-page">
+                        
+                        <div id="diaryEditor" class="journal-editor" contenteditable="true" data-placeholder="Dear Diary,
+
+What's on your mind today?"></div>
+                    </div>
+                    
+                    <div class="diary-actions">
+                        <button class="btn" onclick="saveDiaryEntry()">Save Entry</button>
+                        <button class="btn-secondary btn" onclick="clearDiaryEditor()">Clear</button>
+                    </div>
+                </div>
+
+                <div id="viewTab" class="entries-container" style="display: none;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Diary Reader with Page Turning and book cover-->
+    <div id="diaryReader" class="diary-reader">
+        <button class="close-reader" onclick="closeDiaryReader()">✕</button>
+        
+        <div class="diary-book" id="diaryBook">
+            <!-- Book Spine -->
+            <div class="book-spine">
+                <div class="book-spine-title" id="spineTitle">My Diary</div>
+            </div>
+            
+            <!-- Book Cover -->
+            <div class="book-cover" id="bookCover" onclick="openBookCover()">
+                <div class="book-cover-front" id="bookCoverFront">
+                    <svg class="book-cover-ornament" viewBox="0 0 200 200">
+                        <path d="M 100 40 Q 120 60 100 80 Q 80 60 100 40 Z" fill="rgba(255,255,255,0.3)" />
+                        <circle cx="100" cy="100" r="50" fill="none" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+                        <path d="M 100 120 Q 120 140 100 160 Q 80 140 100 120 Z" fill="rgba(255,255,255,0.3)" />
+                    </svg>
+                    <h2 class="book-cover-title" id="coverTitle">My Diary</h2>
+                    <p class="book-cover-info" id="coverInfo">0 entries</p>
+                    <p class="book-cover-info" id="coverDates">Date Range</p>
+                    <p class="book-cover-cta">Click to open →</p>
+                </div>
+            </div>
+            
+            <!-- Book Pages -->
+            <div class="book-pages-container">
+                <div class="book-page left" id="leftPage">
+                    <div class="page-content" id="leftPageContent"></div>
+                    <div class="page-number left" id="leftPageNumber"></div>
+                </div>
+                <div class="book-page right" id="rightPage">
+                    <div class="page-content" id="rightPageContent"></div>
+                    <div class="page-number right" id="rightPageNumber"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="book-controls" id="bookControls" style="display: none;">
+            <button class="book-nav-btn" id="prevBtn" onclick="previousPage()">← Previous</button>
+            <span style="color: white; font-size: 1.1rem;" id="pageIndicator">Page 1-2</span>
+            <button class="book-nav-btn" id="nextBtn" onclick="nextPage()">Next →</button>
+        </div>
+    </div>
+
+    <script src="js/app.js" defer></script>
+    <script src="js/common.js" defer></script>
+</body>
+</html>

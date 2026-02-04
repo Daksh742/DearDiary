@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DearDiary - Your Safe Space</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Raleway:wght@300;400;500;600&family=Dancing+Script:wght@400;700&family=Caveat:wght@400;700&family=Indie+Flower&family=Shadows+Into+Light&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <a class="logo" href="index.html">
+            <img src="assets/images/logo.png" alt="Dear Diary">
+        </a>
+        <nav>
+            <button class="menu-toggle" id="menuToggle" type="button" aria-label="Open menu" aria-controls="navMenu" aria-expanded="false">☰</button>
+            <ul id="navMenu">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="diary.html">Let it Out</a></li>
+                <li><a href="calm.html">Find Calm</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li id="navAuthContainer"></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <!-- AUTH PAGE -->
+    <div id="authPage" class="page">
+        <div class="auth-container">
+            <div class="auth-box">
+                <h2 id="authTitle">Welcome Back</h2>
+                
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <div class="error-message" id="loginError"></div>
+                    <button type="submit" class="btn" style="width: 100%;">Login</button>
+                </form>
+
+                <form id="signupForm" style="display: none;">
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="signupName" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="signupEmail" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input type="password" id="signupPassword" required minlength="6">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm Password</label>
+                        <input type="password" id="signupConfirmPassword" required>
+                    </div>
+                    <div class="error-message" id="signupError"></div>
+                    <button type="submit" class="btn" style="width: 100%;">Sign Up</button>
+                </form>
+
+                <div class="auth-toggle">
+                    <span id="authToggleText">Don't have an account? </span>
+                    <a id="authToggleLink" onclick="toggleAuthForm()">Sign Up</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/app.js" defer></script>
+    <script src="js/common.js" defer></script>
+
+</body>
+</html>
