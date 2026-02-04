@@ -24,7 +24,7 @@ body {
 }
 
 
-/* Header */
+/* ---------- HEADER ---------- */
 header {
     position: fixed;
     top: 0;
@@ -41,10 +41,19 @@ header {
     border-radius: 0 0 30px 30px;
 }
 
+header .logo{
+    height:120px;
+}
+
+header .logo img{
+    height:100%;
+    width:auto;
+}
+
 .logo {
     cursor: pointer;
     transition: transform 0.3s ease;
-    height: 120px;
+    /* height: 120px; */
 }
 
 .logo img {
@@ -85,6 +94,7 @@ header {
     box-shadow: 0 4px 15px rgba(92, 61, 61, 0.3);
 }
 
+/* ---------- NAVIGATION BAR ---------- */
 nav ul {
     display: flex;
     list-style: none;
@@ -146,7 +156,7 @@ nav a:hover::after {
     color: var(--text-dark);
 }
 
-/* Companion Cat */
+/* ---------- COMPANION CAT ---------- */
 #companion {
     position: fixed;
     bottom: 20px;
@@ -595,7 +605,7 @@ nav a:hover::after {
     color: var(--text-dark);
 }
 
-/* Footer */
+/* ---------- FOOTER ---------- */
 footer {
     padding: 4rem 5% 2rem;
     background: linear-gradient(135deg, var(--brown) 0%, var(--dark-brown) 100%);
@@ -613,12 +623,17 @@ footer {
     margin-bottom: 3rem;
 }
 
-/* .footer-brand .logo {
-    height: auto;
-    margin-bottom: 1.5rem;
-} */
+.footer-brand .logo {
+    height:120px;
+    width:120px;
+    /* margin-bottom: 1.5rem; */
+    display:block;
+}
 
 .footer-brand .logo img {
+    height:100%;
+    width:auto;
+    display:block;
     filter: brightness(0) invert(1) opacity(0.9);
 }
 
